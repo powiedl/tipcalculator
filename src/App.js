@@ -14,8 +14,8 @@ function App() {
 
   const yourTip = (bill * yourPercent) / 100;
   const friendTip = (bill * friendPercent) / 100;
-  const tip = (yourTip + friendTip) / 2;
-  const total = bill + yourTip + friendTip;
+  const tip = Math.round((yourTip + friendTip) * 50) / 100;
+  const total = bill + tip;
   return (
     <div className="App">
       <Bill bill={bill} onChange={setBill} />
@@ -36,8 +36,12 @@ function App() {
 function Bill({ bill, onChange }) {
   return (
     <div>
-      <label>How much was the bill?</label>
-      <input value={bill} onChange={(e) => onChange(Number(e.target.value))} />
+      <label htmlFor="bill">How much was the bill?</label>
+      <input
+        value={bill}
+        onChange={(e) => onChange(Number(e.target.value))}
+        name="bill"
+      />
     </div>
   );
 }
